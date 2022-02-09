@@ -19,10 +19,15 @@ local function get_nvim_lsp_diagnostic(diag_type)
 
   if active_clients then
     local count = 0
+    count = #vim.diagnostic.get(0)
 
-    for _, client in ipairs(active_clients) do
-       count = count + lsp.diagnostic.get_count(api.nvim_get_current_buf(),diag_type,client.id)
-    end
+    -- for _, client in ipairs(active_clients) do
+      -- local opts = {
+        -- severity = diag_type,
+        -- namespace = vim.diagnostic.get_namespace(client.id),
+      -- }
+       -- count = count + #vim.diagnostic.get(0, opts)
+    -- end
 
     if count ~= 0 then return count .. ' ' end
   end
